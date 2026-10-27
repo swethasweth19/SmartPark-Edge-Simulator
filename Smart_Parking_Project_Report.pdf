@@ -1,0 +1,620 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+2 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Courier >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Courier-Bold >>
+endobj
+5 0 obj
+[ /PDF /Text /ImageC ]
+endobj
+6 0 obj
+<< /Type /Page
+   /Parent 11 0 R
+   /MediaBox [0 0 595.28 841.89]
+   /Contents 12 0 R
+   /Resources << /ProcSet 5 0 R
+                 /Font << /F1 1 0 R
+                          /F2 2 0 R
+                          /F3 3 0 R
+                          /F4 4 0 R >> >> >>
+endobj
+7 0 obj
+<< /Type /Page
+   /Parent 11 0 R
+   /MediaBox [0 0 595.28 841.89]
+   /Contents 13 0 R
+   /Resources << /ProcSet 5 0 R
+                 /Font << /F1 1 0 R
+                          /F2 2 0 R
+                          /F3 3 0 R
+                          /F4 4 0 R >> >> >>
+endobj
+8 0 obj
+<< /Type /Page
+   /Parent 11 0 R
+   /MediaBox [0 0 595.28 841.89]
+   /Contents 14 0 R
+   /Resources << /ProcSet 5 0 R
+                 /Font << /F1 1 0 R
+                          /F2 2 0 R
+                          /F3 3 0 R
+                          /F4 4 0 R >> >> >>
+endobj
+9 0 obj
+<< /Type /Page
+   /Parent 11 0 R
+   /MediaBox [0 0 595.28 841.89]
+   /Contents 15 0 R
+   /Resources << /ProcSet 5 0 R
+                 /Font << /F1 1 0 R
+                          /F2 2 0 R
+                          /F3 3 0 R
+                          /F4 4 0 R >> >> >>
+endobj
+10 0 obj
+<< /Type /Page
+   /Parent 11 0 R
+   /MediaBox [0 0 595.28 841.89]
+   /Contents 16 0 R
+   /Resources << /ProcSet 5 0 R
+                 /Font << /F1 1 0 R
+                          /F2 2 0 R
+                          /F3 3 0 R
+                          /F4 4 0 R >> >> >>
+endobj
+11 0 obj
+<< /Type /Pages /Kids [ 6 0 R 7 0 R 8 0 R 9 0 R 10 0 R ] /Count 5 >>
+endobj
+12 0 obj
+<< /Length 3301 >>
+stream
+0.080 0.180 0.360 rg
+0.00 720.00 595.28 122.00 re f
+0.150 0.530 0.960 rg
+0.00 715.00 595.28 5.00 re f
+1.000 1.000 1.000 rg
+BT /F2 12 Tf 50.00 790.00 Td (PROJECT TECHNICAL REPORT) Tj ET
+BT /F2 22 Tf 50.00 755.00 Td (Smart-Parking Edge Box Simulation) Tj ET
+BT /F1 11 Tf 50.00 735.00 Td (Zero-Trust Cryptographic Infrastructure & Real-World Edge Architecture) Tj ET
+0.120 0.160 0.240 rg
+BT /F2 13 Tf 50.00 670.00 Td (An Autonomous Edge Computing System for Privacy-Preserving Smart Cities) Tj ET
+0.960 0.970 0.990 rg
+50.00 380.00 495.28 260.00 re f
+0.150 0.530 0.960 rg
+50.00 380.00 5.00 260.00 re f
+0.850 0.880 0.930 RG
+50.00 380.00 495.28 260.00 re S
+0.280 0.350 0.450 rg
+BT /F2 10 Tf 70.00 610.00 Td (Domain:) Tj ET
+0.060 0.090 0.160 rg
+BT /F1 10 Tf 180.00 610.00 Td (Edge Computing, Applied Cryptography & IoT Security) Tj ET
+0.280 0.350 0.450 rg
+BT /F2 10 Tf 70.00 584.00 Td (Scenario:) Tj ET
+0.060 0.090 0.160 rg
+BT /F1 10 Tf 180.00 584.00 Td (Municipal Smart Parking Facility with Local Edge Box) Tj ET
+0.280 0.350 0.450 rg
+BT /F2 10 Tf 70.00 558.00 Td (Repository:) Tj ET
+0.060 0.090 0.160 rg
+BT /F1 10 Tf 180.00 558.00 Td (https://github.com/swethasweth19/SmartPark-Edge-Simulator) Tj ET
+0.280 0.350 0.450 rg
+BT /F2 10 Tf 70.00 532.00 Td (Implementation:) Tj ET
+0.060 0.090 0.160 rg
+BT /F1 10 Tf 180.00 532.00 Td (Python 3.11, PyCryptodome, Paillier \(phe\), Flask) Tj ET
+0.280 0.350 0.450 rg
+BT /F2 10 Tf 70.00 506.00 Td (Cryptography:) Tj ET
+0.060 0.090 0.160 rg
+BT /F1 10 Tf 180.00 506.00 Td (AES-256-GCM, IBE, ABE, PRE, FE, Honey Encryption,) Tj ET
+0.060 0.090 0.160 rg
+BT /F1 10 Tf 180.00 480.00 Td (Searchable Encryption \(SSE\), Paillier HE, JWT) Tj ET
+0.280 0.350 0.450 rg
+BT /F2 10 Tf 70.00 454.00 Td (Simulation UI:) Tj ET
+0.060 0.090 0.160 rg
+BT /F1 10 Tf 180.00 454.00 Td (Interactive 2D Real-World Parking Lot with Gates & Sensors) Tj ET
+0.280 0.350 0.450 rg
+BT /F2 10 Tf 70.00 428.00 Td (Date:) Tj ET
+0.060 0.090 0.160 rg
+BT /F1 10 Tf 180.00 428.00 Td (October 2026) Tj ET
+0.280 0.350 0.450 rg
+BT /F2 10 Tf 70.00 402.00 Td (Status:) Tj ET
+0.060 0.090 0.160 rg
+BT /F1 10 Tf 180.00 402.00 Td (Fully Implemented, Verified & Deployed) Tj ET
+0.930 0.960 1.000 rg
+50.00 180.00 495.28 170.00 re f
+0.150 0.530 0.960 RG
+50.00 180.00 495.28 170.00 re S
+0.120 0.300 0.650 rg
+BT /F2 11 Tf 70.00 325.00 Td (EXECUTIVE SUMMARY) Tj ET
+0.120 0.160 0.240 rg
+BT /F1 9.5 Tf 70.00 305.00 Td (This project models and implements an intelligent on-site Smart-Parking Edge Box that) Tj ET
+BT /F1 9.5 Tf 70.00 286.00 Td (processes camera and ultrasonic sensor telemetry locally. It addresses the vulnerabilities of) Tj ET
+BT /F1 9.5 Tf 70.00 267.00 Td (traditional cloud architectures: driver location surveillance, sensor spoofing, payment terminal) Tj ET
+BT /F1 9.5 Tf 70.00 248.00 Td (brute-forcing, and camera flood attacks. By combining 11 advanced cryptographic algorithms) Tj ET
+BT /F1 9.5 Tf 70.00 229.00 Td (with an interactive real-world 8-bay parking lot simulator, the system delivers zero-trust privacy) Tj ET
+BT /F1 9.5 Tf 70.00 210.00 Td (and active cyber defense on edge hardware.) Tj ET
+0.850 0.880 0.930 rg
+1.00 w 50.00 90.00 m 545.28 90.00 l S
+0.400 0.450 0.550 rg
+BT /F1 9 Tf 50.00 72.00 Td (Smart-Parking Edge Box Technical Report) Tj ET
+BT /F1 9 Tf 490.28 72.00 Td (Page 1 of 5) Tj ET
+endstream
+endobj
+13 0 obj
+<< /Length 4875 >>
+stream
+0.080 0.180 0.360 rg
+BT /F2 14 Tf 50.00 790.00 Td (1. PROBLEM STATEMENT & SYSTEM ARCHITECTURE) Tj ET
+0.150 0.530 0.960 rg
+2.00 w 50.00 782.00 m 545.28 782.00 l S
+0.120 0.160 0.240 rg
+BT /F1 9.5 Tf 50.00 760.00 Td (In smart cities, roadside Automated License Plate Readers \(ALPR\) and ultrasonic occupancy) Tj ET
+BT /F1 9.5 Tf 50.00 744.00 Td (sensors continuously record vehicle movements. Transmitting this raw telemetry to distant cloud) Tj ET
+BT /F1 9.5 Tf 50.00 728.00 Td (servers exposes citizens to mass surveillance and tracking. Furthermore, outdoor sensor lines are) Tj ET
+BT /F1 9.5 Tf 50.00 712.00 Td (vulnerable to packet injection, payment kiosks face PIN brute-force attacks, and compromised) Tj ET
+BT /F1 9.5 Tf 50.00 696.00 Td (cameras can flood the local network with malicious video frames to crash barrier gates.) Tj ET
+0.080 0.180 0.360 rg
+BT /F2 11 Tf 50.00 660.00 Td (Component Subsystems & Source Files) Tj ET
+0.920 0.940 0.970 rg
+50.00 625.00 495.28 24.00 re f
+0.080 0.180 0.360 rg
+BT /F2 9.5 Tf 60.00 632.00 Td (Subsystem) Tj ET
+BT /F2 9.5 Tf 180.00 632.00 Td (File) Tj ET
+BT /F2 9.5 Tf 300.00 632.00 Td (Cryptographic & Functional Responsibilities) Tj ET
+0.970 0.980 1.000 rg
+50.00 587.00 495.28 30.00 re f
+0.850 0.880 0.930 RG
+50.00 587.00 495.28 30.00 re S
+0.080 0.180 0.360 rg
+BT /F2 9 Tf 60.00 601.00 Td (Gate Camera) Tj ET
+0.250 0.350 0.500 rg
+BT /F3 8.5 Tf 180.00 601.00 Td (camera.py) Tj ET
+0.120 0.160 0.240 rg
+BT /F1 8.5 Tf 300.00 601.00 Td (Captures plates, blurs & hashes, signs with ECDSA P-256, encrypts with AES-GCM & IBE.) Tj ET
+0.970 0.980 1.000 rg
+50.00 553.00 495.28 30.00 re f
+0.850 0.880 0.930 RG
+50.00 553.00 495.28 30.00 re S
+0.080 0.180 0.360 rg
+BT /F2 9 Tf 60.00 567.00 Td (Bay Sensor) Tj ET
+0.250 0.350 0.500 rg
+BT /F3 8.5 Tf 180.00 567.00 Td (sensor.py) Tj ET
+0.120 0.160 0.240 rg
+BT /F1 8.5 Tf 300.00 567.00 Td (Ultrasonic sensor process. Tracks bays, reduces GPS coords, rotates IDs, signs with HMAC.) Tj ET
+0.970 0.980 1.000 rg
+50.00 519.00 495.28 30.00 re f
+0.850 0.880 0.930 RG
+50.00 519.00 495.28 30.00 re S
+0.080 0.180 0.360 rg
+BT /F2 9 Tf 60.00 533.00 Td (Edge Server) Tj ET
+0.250 0.350 0.500 rg
+BT /F3 8.5 Tf 180.00 533.00 Td (parking_edge.py) Tj ET
+0.120 0.160 0.240 rg
+BT /F1 8.5 Tf 300.00 533.00 Td (The on-site edge security box. Ingests packets, manages ABE, PRE, FE, SSE, and rate limits.) Tj ET
+0.970 0.980 1.000 rg
+50.00 485.00 495.28 30.00 re f
+0.850 0.880 0.930 RG
+50.00 485.00 495.28 30.00 re S
+0.080 0.180 0.360 rg
+BT /F2 9 Tf 60.00 499.00 Td (Crypto Engine) Tj ET
+0.250 0.350 0.500 rg
+BT /F3 8.5 Tf 180.00 499.00 Td (crypto_utils.py) Tj ET
+0.120 0.160 0.240 rg
+BT /F1 8.5 Tf 300.00 499.00 Td (Modular engine for all 11 crypto primitives \(AES-GCM, IBE, ABE, PRE, FE, Honey, SSE, HE\).) Tj ET
+0.970 0.980 1.000 rg
+50.00 451.00 495.28 30.00 re f
+0.850 0.880 0.930 RG
+50.00 451.00 495.28 30.00 re S
+0.080 0.180 0.360 rg
+BT /F2 9 Tf 60.00 465.00 Td (Simulator UI) Tj ET
+0.250 0.350 0.500 rg
+BT /F3 8.5 Tf 180.00 465.00 Td (app.py / index.html) Tj ET
+0.120 0.160 0.240 rg
+BT /F1 8.5 Tf 300.00 465.00 Td (Interactive visual parking lot dashboard with boom barriers, cars, sensors & payment kiosk.) Tj ET
+0.080 0.180 0.360 rg
+BT /F2 14 Tf 50.00 400.00 Td (2. THE 11 CRYPTOGRAPHIC SPECIFICATIONS \(OVERVIEW\)) Tj ET
+0.150 0.530 0.960 rg
+2.00 w 50.00 392.00 m 545.28 392.00 l S
+0.150 0.530 0.960 rg
+BT /F2 9.5 Tf 55.00 368.00 Td (Step 1: AES-256-GCM + ECDSA) Tj ET
+0.120 0.160 0.240 rg
+BT /F1 9 Tf 230.00 368.00 Td (Per-sensor authenticated encryption and digital signature verification.) Tj ET
+0.150 0.530 0.960 rg
+BT /F2 9.5 Tf 55.00 344.00 Td (Step 2: Identity-Based \(IBE\)) Tj ET
+0.120 0.160 0.240 rg
+BT /F1 9 Tf 230.00 344.00 Td (Direct encryption to lot identity \('LOT-3'\) eliminating certificate exchange.) Tj ET
+0.150 0.530 0.960 rg
+BT /F2 9.5 Tf 55.00 320.00 Td (Step 3: Attribute-Based \(ABE\)) Tj ET
+0.120 0.160 0.240 rg
+BT /F1 9 Tf 230.00 320.00 Td (Policy: 'ParkingAttendant AND Lot3'. Restricts revenue/alarm telemetry.) Tj ET
+0.150 0.530 0.960 rg
+BT /F2 9.5 Tf 55.00 296.00 Td (Step 4: Proxy Re-Encryption \(PRE\)) Tj ET
+0.120 0.160 0.240 rg
+BT /F1 9 Tf 230.00 296.00 Td (Re-encrypts operator records for City Inspector without master keys.) Tj ET
+0.150 0.530 0.960 rg
+BT /F2 9.5 Tf 55.00 272.00 Td (Step 5: Functional Encryption \(FE\)) Tj ET
+0.120 0.160 0.240 rg
+BT /F1 9 Tf 230.00 272.00 Td (Calculates total occupancy % and EV charging bay count with zero ID leaks.) Tj ET
+0.150 0.530 0.960 rg
+BT /F2 9.5 Tf 55.00 248.00 Td (Step 6: Honey Encryption) Tj ET
+0.120 0.160 0.240 rg
+BT /F1 9 Tf 230.00 248.00 Td (Protects payment PINs; wrong guesses synthesize realistic fake cards.) Tj ET
+0.850 0.880 0.930 rg
+1.00 w 50.00 90.00 m 545.28 90.00 l S
+0.400 0.450 0.550 rg
+BT /F1 9 Tf 50.00 72.00 Td (Smart-Parking Edge Box Technical Report) Tj ET
+BT /F1 9 Tf 490.28 72.00 Td (Page 2 of 5) Tj ET
+endstream
+endobj
+14 0 obj
+<< /Length 3339 >>
+stream
+0.080 0.180 0.360 rg
+BT /F2 14 Tf 50.00 790.00 Td (3. CRYPTOGRAPHIC MECHANISMS IN DETAIL) Tj ET
+0.150 0.530 0.960 rg
+2.00 w 50.00 782.00 m 545.28 782.00 l S
+0.120 0.300 0.650 rg
+BT /F2 10.5 Tf 50.00 750.00 Td (Step 6: Honey Encryption & Decoy Honeypot) Tj ET
+0.120 0.160 0.240 rg
+BT /F1 9 Tf 50.00 735.00 Td (Traditional authentication alerts attackers with 'Access Denied'. Under Honey Encryption, the payment) Tj ET
+BT /F1 9 Tf 50.00 721.00 Td (card number is encoded with a Distribution-Transforming Encoder \(DTE\). Entering the correct PIN \(4829\)) Tj ET
+BT /F1 9 Tf 50.00 707.00 Td (returns the real card \('4532-1234-5678-9012'\). Any incorrect guess \(e.g. 1234\) produces a plausible synthetic) Tj ET
+BT /F1 9 Tf 50.00 693.00 Td (credit card number \('4916-XXXX-XXXX-2345'\). The intruder wastes effort attempting to exploit decoy credentials.) Tj ET
+0.120 0.300 0.650 rg
+BT /F2 10.5 Tf 50.00 669.00 Td (Step 7: Searchable Symmetric Encryption \(SSE\)) Tj ET
+0.120 0.160 0.240 rg
+BT /F1 9 Tf 50.00 654.00 Td (Encrypted event logs are indexed using blinded cryptographic trapdoors: T_w = HMAC\(K_search, keyword\).) Tj ET
+BT /F1 9 Tf 50.00 640.00 Td (Operators can search by vehicle camera ID or timestamp without decrypting the underlying database or) Tj ET
+BT /F1 9 Tf 50.00 626.00 Td (revealing what query term was requested.) Tj ET
+0.120 0.300 0.650 rg
+BT /F2 10.5 Tf 50.00 602.00 Td (Step 8: Paillier Homomorphic Encryption \(HE\)) Tj ET
+0.120 0.160 0.240 rg
+BT /F1 9 Tf 50.00 587.00 Td (To calculate total municipal parking availability across independent edge boxes, each box encrypts its free) Tj ET
+BT /F1 9 Tf 50.00 573.00 Td (spot count with the Paillier cryptosystem. A central server multiplies the ciphertexts: Enc\(m1\) * Enc\(m2\) =) Tj ET
+BT /F1 9 Tf 50.00 559.00 Td (Enc\(m1 + m2\). The city decrypts only the final sum without learning individual lot numbers.) Tj ET
+0.120 0.300 0.650 rg
+BT /F2 10.5 Tf 50.00 535.00 Td (Step 9: Multi-Role JWT Token Architecture) Tj ET
+0.120 0.160 0.240 rg
+BT /F1 9 Tf 50.00 520.00 Td (Issues cryptographically signed tokens: Operator JWT \(administrative session\), City Payment JWT) Tj ET
+BT /F1 9 Tf 50.00 506.00 Td (\(automated wallet deduction\), and Ticket Handover JWT \(mobile app handover for contactless gate exit\).) Tj ET
+0.120 0.300 0.650 rg
+BT /F2 10.5 Tf 50.00 482.00 Td (Step 10: Driver Privacy-Preserving Safeguards) Tj ET
+0.120 0.160 0.240 rg
+BT /F1 9 Tf 50.00 467.00 Td (Four layers of privacy: 1\) SHA-256 license plate hashing, 2\) Visual plate blurring \(DL03**9012\), 3\) Location) Tj ET
+BT /F1 9 Tf 50.00 453.00 Td (precision reduction to 2 decimal places \(~1.1 km area\), and 4\) Ephemeral device UUID rotation every 10 frames.) Tj ET
+0.120 0.300 0.650 rg
+BT /F2 10.5 Tf 50.00 429.00 Td (Step 11: Token-Bucket Rate Limiter & Flood Defense) Tj ET
+0.120 0.160 0.240 rg
+BT /F1 9 Tf 50.00 414.00 Td (Maintains a token bucket \(10 token burst capacity, 2 tokens/sec refill\). When an outdoor camera is hacked) Tj ET
+BT /F1 9 Tf 50.00 400.00 Td (and floods 20 frames/sec, the edge box exhausts tokens and quarantines the device within 0.05 seconds.) Tj ET
+0.850 0.880 0.930 rg
+1.00 w 50.00 90.00 m 545.28 90.00 l S
+0.400 0.450 0.550 rg
+BT /F1 9 Tf 50.00 72.00 Td (Smart-Parking Edge Box Technical Report) Tj ET
+BT /F1 9 Tf 490.28 72.00 Td (Page 3 of 5) Tj ET
+endstream
+endobj
+15 0 obj
+<< /Length 4394 >>
+stream
+0.080 0.180 0.360 rg
+BT /F2 14 Tf 50.00 790.00 Td (4. REAL-WORLD INTERACTIVE SIMULATION IMPLEMENTATION) Tj ET
+0.150 0.530 0.960 rg
+2.00 w 50.00 782.00 m 545.28 782.00 l S
+0.120 0.160 0.240 rg
+BT /F1 9.5 Tf 50.00 760.00 Td (To make applied cryptography intuitive, the simulation renders an interactive 2D parking facility) Tj ET
+BT /F1 9.5 Tf 50.00 744.00 Td (running live in the browser. Users can observe how physical actions map to cryptographic guarantees:) Tj ET
+0.950 0.970 1.000 rg
+50.00 702.00 495.28 32.00 re f
+0.850 0.880 0.930 RG
+50.00 702.00 495.28 32.00 re S
+0.120 0.300 0.650 rg
+BT /F2 9.5 Tf 60.00 718.00 Td (1. Car Arrival & Parking) Tj ET
+0.120 0.160 0.240 rg
+BT /F1 8.5 Tf 60.00 706.00 Td (Gate 1 camera scans car plate, hashes/blurs it, verifies ECC signature, lifts barrier, car parks.) Tj ET
+0.950 0.970 1.000 rg
+50.00 660.00 495.28 32.00 re f
+0.850 0.880 0.930 RG
+50.00 660.00 495.28 32.00 re S
+0.120 0.300 0.650 rg
+BT /F2 9.5 Tf 60.00 676.00 Td (2. EV Charging Demand) Tj ET
+0.120 0.160 0.240 rg
+BT /F1 8.5 Tf 60.00 664.00 Td (Electric car parks in Bay E1. Functional Encryption calculates power load for city grid.) Tj ET
+0.950 0.970 1.000 rg
+50.00 618.00 495.28 32.00 re f
+0.850 0.880 0.930 RG
+50.00 618.00 495.28 32.00 re S
+0.120 0.300 0.650 rg
+BT /F2 9.5 Tf 60.00 634.00 Td (3. Departure & Sensor State) Tj ET
+0.120 0.160 0.240 rg
+BT /F1 8.5 Tf 60.00 622.00 Td (Car vacates bay; ultrasonic ceiling sensor turns GREEN; live free space counter increments.) Tj ET
+0.950 0.970 1.000 rg
+50.00 576.00 495.28 32.00 re f
+0.850 0.880 0.930 RG
+50.00 576.00 495.28 32.00 re S
+0.120 0.300 0.650 rg
+BT /F2 9.5 Tf 60.00 592.00 Td (4. Payment Kiosk Test) Tj ET
+0.120 0.160 0.240 rg
+BT /F1 8.5 Tf 60.00 580.00 Td (Touch PIN pad. Correct PIN \(4829\) lifts exit barrier. Wrong PIN fires Honey Decoy Trap.) Tj ET
+0.950 0.970 1.000 rg
+50.00 534.00 495.28 32.00 re f
+0.850 0.880 0.930 RG
+50.00 534.00 495.28 32.00 re S
+0.120 0.300 0.650 rg
+BT /F2 9.5 Tf 60.00 550.00 Td (5. City Inspector Audit) Tj ET
+0.120 0.160 0.240 rg
+BT /F1 8.5 Tf 60.00 538.00 Td (City inspector requests compliance check. Edge Box issues temporary Proxy Re-Encryption token.) Tj ET
+0.950 0.970 1.000 rg
+50.00 492.00 495.28 32.00 re f
+0.850 0.880 0.930 RG
+50.00 492.00 495.28 32.00 re S
+0.120 0.300 0.650 rg
+BT /F2 9.5 Tf 60.00 508.00 Td (6. Cyber Flood Defense) Tj ET
+0.120 0.160 0.240 rg
+BT /F1 8.5 Tf 60.00 496.00 Td (Compromised camera sends 20 frames/sec. Rate limiter isolates rogue hardware in 0.05 seconds.) Tj ET
+0.080 0.180 0.360 rg
+BT /F2 11 Tf 50.00 420.00 Td (Simulated Parking Facility Layout \(8 Bays\)) Tj ET
+0.100 0.120 0.160 rg
+50.00 240.00 495.28 160.00 re f
+0.980 0.800 0.080 rg
+BT /F2 9 Tf 120.00 315.00 Td (<<< ONE-WAY PARKING LANE \(SPEED LIMIT 10 MPH\) <<<) Tj ET
+0.160 0.200 0.280 rg
+60.00 355.00 100.00 40.00 re f
+0.400 0.500 0.650 RG
+60.00 355.00 100.00 40.00 re S
+1.000 1.000 1.000 rg
+BT /F2 8.5 Tf 70.00 371.00 Td (Bay A1 [Std]) Tj ET
+0.160 0.200 0.280 rg
+180.00 355.00 100.00 40.00 re f
+0.400 0.500 0.650 RG
+180.00 355.00 100.00 40.00 re S
+1.000 1.000 1.000 rg
+BT /F2 8.5 Tf 190.00 371.00 Td (Bay A2 [Std]) Tj ET
+0.160 0.200 0.280 rg
+300.00 355.00 100.00 40.00 re f
+0.400 0.500 0.650 RG
+300.00 355.00 100.00 40.00 re S
+1.000 1.000 1.000 rg
+BT /F2 8.5 Tf 310.00 371.00 Td (Bay A3 [Std]) Tj ET
+0.160 0.200 0.280 rg
+420.00 355.00 100.00 40.00 re f
+0.400 0.500 0.650 RG
+420.00 355.00 100.00 40.00 re S
+1.000 1.000 1.000 rg
+BT /F2 8.5 Tf 430.00 371.00 Td (Bay A4 [Std]) Tj ET
+0.160 0.200 0.280 rg
+60.00 260.00 100.00 40.00 re f
+0.400 0.500 0.650 RG
+60.00 260.00 100.00 40.00 re S
+1.000 1.000 1.000 rg
+BT /F2 8.5 Tf 70.00 276.00 Td (Bay E1 [EV]) Tj ET
+0.160 0.200 0.280 rg
+180.00 260.00 100.00 40.00 re f
+0.400 0.500 0.650 RG
+180.00 260.00 100.00 40.00 re S
+1.000 1.000 1.000 rg
+BT /F2 8.5 Tf 190.00 276.00 Td (Bay E2 [EV]) Tj ET
+0.160 0.200 0.280 rg
+300.00 260.00 100.00 40.00 re f
+0.400 0.500 0.650 RG
+300.00 260.00 100.00 40.00 re S
+1.000 1.000 1.000 rg
+BT /F2 8.5 Tf 310.00 276.00 Td (Bay VIP [Dis]) Tj ET
+0.160 0.200 0.280 rg
+420.00 260.00 100.00 40.00 re f
+0.400 0.500 0.650 RG
+420.00 260.00 100.00 40.00 re S
+1.000 1.000 1.000 rg
+BT /F2 8.5 Tf 430.00 276.00 Td (Bay A5 [Std]) Tj ET
+0.850 0.880 0.930 rg
+1.00 w 50.00 90.00 m 545.28 90.00 l S
+0.400 0.450 0.550 rg
+BT /F1 9 Tf 50.00 72.00 Td (Smart-Parking Edge Box Technical Report) Tj ET
+BT /F1 9 Tf 490.28 72.00 Td (Page 4 of 5) Tj ET
+endstream
+endobj
+16 0 obj
+<< /Length 6710 >>
+stream
+0.080 0.180 0.360 rg
+BT /F2 14 Tf 50.00 790.00 Td (5. EXPERIMENTAL VERIFICATION & CONCLUSION) Tj ET
+0.150 0.530 0.960 rg
+2.00 w 50.00 782.00 m 545.28 782.00 l S
+0.920 0.940 0.970 rg
+50.00 745.00 495.28 22.00 re f
+0.080 0.180 0.360 rg
+BT /F2 9 Tf 60.00 752.00 Td (Test Specification) Tj ET
+BT /F2 9 Tf 200.00 752.00 Td (Expected Behavior) Tj ET
+BT /F2 9 Tf 360.00 752.00 Td (Measured Edge Result) Tj ET
+BT /F2 9 Tf 490.00 752.00 Td (Status) Tj ET
+0.980 0.990 1.000 rg
+50.00 714.00 495.28 20.00 re f
+0.880 0.900 0.950 RG
+50.00 714.00 495.28 20.00 re S
+0.080 0.180 0.360 rg
+BT /F2 8 Tf 60.00 720.00 Td (AES-GCM & Signature Ingest) Tj ET
+0.250 0.350 0.500 rg
+BT /F1 8 Tf 200.00 720.00 Td (Verified authentic packet) Tj ET
+0.120 0.160 0.240 rg
+BT /F1 8 Tf 360.00 720.00 Td (Status: 'OK', Signature Verified) Tj ET
+0.060 0.550 0.250 rg
+BT /F2 8 Tf 490.00 720.00 Td (PASSED) Tj ET
+0.980 0.990 1.000 rg
+50.00 691.00 495.28 20.00 re f
+0.880 0.900 0.950 RG
+50.00 691.00 495.28 20.00 re S
+0.080 0.180 0.360 rg
+BT /F2 8 Tf 60.00 697.00 Td (Identity-Based Enc \(IBE\)) Tj ET
+0.250 0.350 0.500 rg
+BT /F1 8 Tf 200.00 697.00 Td (Direct lot identity decryption) Tj ET
+0.120 0.160 0.240 rg
+BT /F1 8 Tf 360.00 697.00 Td (Decrypted payload matched plain) Tj ET
+0.060 0.550 0.250 rg
+BT /F2 8 Tf 490.00 697.00 Td (PASSED) Tj ET
+0.980 0.990 1.000 rg
+50.00 668.00 495.28 20.00 re f
+0.880 0.900 0.950 RG
+50.00 668.00 495.28 20.00 re S
+0.080 0.180 0.360 rg
+BT /F2 8 Tf 60.00 674.00 Td (Attribute-Based Enc \(ABE\)) Tj ET
+0.250 0.350 0.500 rg
+BT /F1 8 Tf 200.00 674.00 Td (Policy: Attendant AND Lot3) Tj ET
+0.120 0.160 0.240 rg
+BT /F1 8 Tf 360.00 674.00 Td (Attendant: OK, Guard: Denied) Tj ET
+0.060 0.550 0.250 rg
+BT /F2 8 Tf 490.00 674.00 Td (PASSED) Tj ET
+0.980 0.990 1.000 rg
+50.00 645.00 495.28 20.00 re f
+0.880 0.900 0.950 RG
+50.00 645.00 495.28 20.00 re S
+0.080 0.180 0.360 rg
+BT /F2 8 Tf 60.00 651.00 Td (Proxy Re-Encryption \(PRE\)) Tj ET
+0.250 0.350 0.500 rg
+BT /F1 8 Tf 200.00 651.00 Td (Delegated inspector audit) Tj ET
+0.120 0.160 0.240 rg
+BT /F1 8 Tf 360.00 651.00 Td (Inspector successfully decrypted) Tj ET
+0.060 0.550 0.250 rg
+BT /F2 8 Tf 490.00 651.00 Td (PASSED) Tj ET
+0.980 0.990 1.000 rg
+50.00 622.00 495.28 20.00 re f
+0.880 0.900 0.950 RG
+50.00 622.00 495.28 20.00 re S
+0.080 0.180 0.360 rg
+BT /F2 8 Tf 60.00 628.00 Td (Functional Encryption \(FE\)) Tj ET
+0.250 0.350 0.500 rg
+BT /F1 8 Tf 200.00 628.00 Td (Compute occupancy without decrypt) Tj ET
+0.120 0.160 0.240 rg
+BT /F1 8 Tf 360.00 628.00 Td (Occupancy % & Free EV count matched) Tj ET
+0.060 0.550 0.250 rg
+BT /F2 8 Tf 490.00 628.00 Td (PASSED) Tj ET
+0.980 0.990 1.000 rg
+50.00 599.00 495.28 20.00 re f
+0.880 0.900 0.950 RG
+50.00 599.00 495.28 20.00 re S
+0.080 0.180 0.360 rg
+BT /F2 8 Tf 60.00 605.00 Td (Honey Encryption Decoy) Tj ET
+0.250 0.350 0.500 rg
+BT /F1 8 Tf 200.00 605.00 Td (Plausible fake card on bad PIN) Tj ET
+0.120 0.160 0.240 rg
+BT /F1 8 Tf 360.00 605.00 Td (Generated '4916-XXXX-XXXX-2345') Tj ET
+0.060 0.550 0.250 rg
+BT /F2 8 Tf 490.00 605.00 Td (PASSED) Tj ET
+0.980 0.990 1.000 rg
+50.00 576.00 495.28 20.00 re f
+0.880 0.900 0.950 RG
+50.00 576.00 495.28 20.00 re S
+0.080 0.180 0.360 rg
+BT /F2 8 Tf 60.00 582.00 Td (Searchable Encryption \(SSE\)) Tj ET
+0.250 0.350 0.500 rg
+BT /F1 8 Tf 200.00 582.00 Td (Search events via trapdoor) Tj ET
+0.120 0.160 0.240 rg
+BT /F1 8 Tf 360.00 582.00 Td (10 encrypted records returned) Tj ET
+0.060 0.550 0.250 rg
+BT /F2 8 Tf 490.00 582.00 Td (PASSED) Tj ET
+0.980 0.990 1.000 rg
+50.00 553.00 495.28 20.00 re f
+0.880 0.900 0.950 RG
+50.00 553.00 495.28 20.00 re S
+0.080 0.180 0.360 rg
+BT /F2 8 Tf 60.00 559.00 Td (Paillier Homomorphic Sum) Tj ET
+0.250 0.350 0.500 rg
+BT /F1 8 Tf 200.00 559.00 Td (Sum free spots across boxes) Tj ET
+0.120 0.160 0.240 rg
+BT /F1 8 Tf 360.00 559.00 Td (HE Sum: 38 == Plain Sum: 38) Tj ET
+0.060 0.550 0.250 rg
+BT /F2 8 Tf 490.00 559.00 Td (PASSED) Tj ET
+0.980 0.990 1.000 rg
+50.00 530.00 495.28 20.00 re f
+0.880 0.900 0.950 RG
+50.00 530.00 495.28 20.00 re S
+0.080 0.180 0.360 rg
+BT /F2 8 Tf 60.00 536.00 Td (JWT Authentication) Tj ET
+0.250 0.350 0.500 rg
+BT /F1 8 Tf 200.00 536.00 Td (Validate Operator, Pay, Ticket tokens) Tj ET
+0.120 0.160 0.240 rg
+BT /F1 8 Tf 360.00 536.00 Td (Claims verified via HMAC-SHA256) Tj ET
+0.060 0.550 0.250 rg
+BT /F2 8 Tf 490.00 536.00 Td (PASSED) Tj ET
+0.980 0.990 1.000 rg
+50.00 507.00 495.28 20.00 re f
+0.880 0.900 0.950 RG
+50.00 507.00 495.28 20.00 re S
+0.080 0.180 0.360 rg
+BT /F2 8 Tf 60.00 513.00 Td (Privacy Transformations) Tj ET
+0.250 0.350 0.500 rg
+BT /F1 8 Tf 200.00 513.00 Td (Hash & blur plate, truncate GPS) Tj ET
+0.120 0.160 0.240 rg
+BT /F1 8 Tf 360.00 513.00 Td (Original plate never stored) Tj ET
+0.060 0.550 0.250 rg
+BT /F2 8 Tf 490.00 513.00 Td (PASSED) Tj ET
+0.980 0.990 1.000 rg
+50.00 484.00 495.28 20.00 re f
+0.880 0.900 0.950 RG
+50.00 484.00 495.28 20.00 re S
+0.080 0.180 0.360 rg
+BT /F2 8 Tf 60.00 490.00 Td (Rate Limiter Quarantine) Tj ET
+0.250 0.350 0.500 rg
+BT /F1 8 Tf 200.00 490.00 Td (Block camera flooding 20 fps) Tj ET
+0.120 0.160 0.240 rg
+BT /F1 8 Tf 360.00 490.00 Td (Quarantined at packet #11) Tj ET
+0.060 0.550 0.250 rg
+BT /F2 8 Tf 490.00 490.00 Td (PASSED) Tj ET
+0.080 0.180 0.360 rg
+BT /F2 12 Tf 50.00 440.00 Td (Conclusion) Tj ET
+0.120 0.160 0.240 rg
+BT /F1 9.5 Tf 50.00 415.00 Td (The Smart-Parking Edge Box Simulation successfully demonstrates that advanced cryptographic) Tj ET
+BT /F1 9.5 Tf 50.00 399.00 Td (safeguards can be deployed directly on municipal roadside hardware. By executing authenticated) Tj ET
+BT /F1 9.5 Tf 50.00 383.00 Td (ingestion, privacy anonymization, Honey Encryption decoy generation, and token-bucket flood defense) Tj ET
+BT /F1 9.5 Tf 50.00 367.00 Td (at the edge, the system achieves zero-trust reliability without leaking private telemetry to cloud servers.) Tj ET
+BT /F1 9.5 Tf 50.00 351.00 Td (The paired real-world interactive simulator provides an effective educational and operational bridge) Tj ET
+BT /F1 9.5 Tf 50.00 335.00 Td (between theoretical cryptography and physical smart city infrastructure.) Tj ET
+0.950 0.970 1.000 rg
+50.00 240.00 495.28 70.00 re f
+0.150 0.530 0.960 RG
+50.00 240.00 495.28 70.00 re S
+0.120 0.300 0.650 rg
+BT /F2 10 Tf 65.00 285.00 Td (Project Deliverables Verified & Complete) Tj ET
+0.250 0.350 0.500 rg
+BT /F1 9 Tf 65.00 268.00 Td (- GitHub Repository: https://github.com/swethasweth19/SmartPark-Edge-Simulator) Tj ET
+BT /F1 9 Tf 65.00 252.00 Td (- Live Interactive Dashboard: http://127.0.0.1:5000 | Automated Test Harness: demo.py) Tj ET
+0.850 0.880 0.930 rg
+1.00 w 50.00 90.00 m 545.28 90.00 l S
+0.400 0.450 0.550 rg
+BT /F1 9 Tf 50.00 72.00 Td (Smart-Parking Edge Box Technical Report) Tj ET
+BT /F1 9 Tf 490.28 72.00 Td (Page 5 of 5) Tj ET
+endstream
+endobj
+17 0 obj
+<< /Type /Catalog /Pages 11 0 R >>
+endobj
+xref
+0 18
+0000000000 65535 f 
+0000000009 00000 n 
+0000000079 00000 n 
+0000000154 00000 n 
+0000000222 00000 n 
+0000000295 00000 n 
+0000000333 00000 n 
+0000000619 00000 n 
+0000000905 00000 n 
+0000001191 00000 n 
+0000001477 00000 n 
+0000001764 00000 n 
+0000001849 00000 n 
+0000005203 00000 n 
+0000010131 00000 n 
+0000013523 00000 n 
+0000017970 00000 n 
+0000024733 00000 n 
+trailer
+<< /Size 18
+   /Root 17 0 R >>
+startxref
+24784
+%%EOF
