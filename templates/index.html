@@ -1,0 +1,1921 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Smart-Parking Edge Box — Real-world interactive simulation showing how intelligent, privacy-first parking works.">
+    <title>🅿️ Smart-Parking Edge Box — Real-World Simulation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-base: #070a13;
+            --bg-surface: #0e1526;
+            --bg-card: #151f38;
+            --bg-card-hover: #1c2a4c;
+            --border: #223258;
+            --border-highlight: #3b82f6;
+            
+            --text-main: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            
+            --accent-blue: #3b82f6;
+            --accent-cyan: #06b6d4;
+            --accent-emerald: #10b981;
+            --accent-amber: #f59e0b;
+            --accent-rose: #f43f5e;
+            --accent-purple: #8b5cf6;
+            
+            --asphalt: #181d29;
+            --road-line: #facc15;
+            --parking-line: rgba(255, 255, 255, 0.35);
+            
+            --shadow-subtle: 0 4px 20px rgba(0, 0, 0, 0.4);
+            --shadow-glow: 0 0 25px rgba(59, 130, 246, 0.25);
+            --radius-xl: 20px;
+            --radius-md: 12px;
+            --radius-sm: 8px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+            background: var(--bg-base);
+            color: var(--text-main);
+            min-height: 100vh;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(ellipse at 15% 10%, rgba(59, 130, 246, 0.12) 0%, transparent 40%),
+                radial-gradient(ellipse at 85% 80%, rgba(139, 92, 246, 0.10) 0%, transparent 40%),
+                radial-gradient(ellipse at 50% 50%, rgba(6, 182, 212, 0.05) 0%, transparent 60%);
+        }
+
+        /* ── Top Navigation Bar ── */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 36px;
+            background: rgba(14, 21, 38, 0.85);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .brand-icon {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, #3b82f6, #06b6d4);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
+        }
+
+        .brand-text h1 {
+            font-size: 19px;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #ffffff, #cbd5e1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .brand-text p {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .nav-tabs {
+            display: flex;
+            background: rgba(7, 10, 19, 0.6);
+            border: 1px solid var(--border);
+            padding: 4px;
+            border-radius: 12px;
+            gap: 4px;
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            padding: 8px 18px;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tab-btn:hover {
+            color: var(--text-main);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .tab-btn.active {
+            color: #ffffff;
+            background: var(--accent-blue);
+            box-shadow: 0 2px 10px rgba(59, 130, 246, 0.4);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .sound-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            padding: 8px 14px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+        }
+
+        .sound-btn:hover {
+            border-color: var(--accent-blue);
+            color: var(--text-main);
+        }
+
+        /* ── Main Container ── */
+        .container {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 24px 32px 60px;
+        }
+
+        /* ── KPI Bar ── */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+            margin-bottom: 24px;
+        }
+
+        .kpi-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 18px 22px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-subtle);
+        }
+
+        .kpi-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--kpi-accent, var(--accent-blue));
+        }
+
+        .kpi-info h4 {
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-secondary);
+            margin-bottom: 6px;
+        }
+
+        .kpi-value {
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--text-main);
+            display: flex;
+            align-items: baseline;
+            gap: 6px;
+        }
+
+        .kpi-sub {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-muted);
+        }
+
+        .kpi-icon-wrap {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+        }
+
+        /* ── Real-World Lot Layout ── */
+        .realworld-zone {
+            display: block;
+        }
+
+        .lot-wrapper {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: var(--shadow-subtle);
+        }
+
+        .lot-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .lot-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .lot-title h2 {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .badge-live {
+            background: rgba(16, 185, 129, 0.15);
+            border: 1px solid rgba(16, 185, 129, 0.4);
+            color: var(--accent-emerald);
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .badge-live::before {
+            content: '';
+            width: 7px;
+            height: 7px;
+            background: var(--accent-emerald);
+            border-radius: 50%;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.9); opacity: 0.7; }
+            50% { transform: scale(1.3); opacity: 1; }
+            100% { transform: scale(0.9); opacity: 0.7; }
+        }
+
+        .lot-canvas {
+            background: #111520;
+            border: 2px dashed #253352;
+            border-radius: 16px;
+            padding: 28px 24px;
+            display: grid;
+            grid-template-columns: 240px 1fr 260px;
+            gap: 24px;
+            position: relative;
+            min-height: 480px;
+            align-items: stretch;
+        }
+
+        /* ── Gate Towers (Entry & Exit) ── */
+        .gate-tower {
+            background: rgba(21, 31, 56, 0.7);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .gate-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 14px;
+        }
+
+        .gate-tag {
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            padding: 3px 8px;
+            border-radius: 6px;
+        }
+
+        .entry-tag { background: rgba(59, 130, 246, 0.2); color: var(--accent-blue); }
+        .exit-tag { background: rgba(16, 185, 129, 0.2); color: var(--accent-emerald); }
+
+        .gate-road {
+            background: var(--asphalt);
+            border-radius: 10px;
+            height: 130px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #28344e;
+            overflow: hidden;
+            margin-bottom: 14px;
+        }
+
+        .gate-road::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 50%;
+            height: 2px;
+            border-top: 2px dashed var(--road-line);
+            opacity: 0.7;
+        }
+
+        /* Animated Barrier Arm */
+        .barrier-post {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 14px;
+            height: 14px;
+            background: #ef4444;
+            border-radius: 3px;
+            z-index: 5;
+            box-shadow: 0 0 10px rgba(239, 68, 68, 0.8);
+        }
+
+        .barrier-arm {
+            position: absolute;
+            top: 24px;
+            left: 26px;
+            width: 100px;
+            height: 8px;
+            background: repeating-linear-gradient(45deg, #ef4444, #ef4444 10px, #ffffff 10px, #ffffff 20px);
+            border-radius: 4px;
+            transform-origin: 0% 50%;
+            transform: rotate(0deg);
+            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            z-index: 6;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+        }
+
+        .barrier-arm.raised {
+            transform: rotate(-65deg);
+        }
+
+        .camera-post {
+            position: absolute;
+            bottom: 12px;
+            right: 12px;
+            background: #1e293b;
+            border: 1px solid #475569;
+            padding: 6px 10px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11px;
+            font-weight: 700;
+            color: #94a3b8;
+            z-index: 8;
+        }
+
+        .cam-flash {
+            width: 8px;
+            height: 8px;
+            background: var(--accent-blue);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--accent-blue);
+        }
+
+        .cam-flash.flashing {
+            animation: flashAnim 0.4s ease-out;
+        }
+
+        @keyframes flashAnim {
+            0% { transform: scale(1); background: #ffffff; box-shadow: 0 0 25px #ffffff; }
+            100% { transform: scale(1); background: var(--accent-blue); box-shadow: 0 0 8px var(--accent-blue); }
+        }
+
+        .gate-lcd {
+            background: #090e1a;
+            border: 1px solid #1f2a44;
+            border-radius: 8px;
+            padding: 12px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+        }
+
+        .gate-lcd-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 6px;
+        }
+
+        .gate-lcd-row:last-child { margin-bottom: 0; }
+        .lcd-label { color: #64748b; }
+        .lcd-val { color: var(--accent-cyan); font-weight: 600; }
+        .lcd-blur { color: var(--accent-amber); letter-spacing: 1px; }
+
+        /* ── Center Parking Lot Bays ── */
+        .parking-grid-center {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            background: var(--asphalt);
+            border-radius: 14px;
+            padding: 20px;
+            border: 2px solid #28344e;
+            box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.6);
+            justify-content: space-between;
+        }
+
+        .driveway-line {
+            height: 24px;
+            border-top: 2px dashed rgba(250, 204, 21, 0.4);
+            border-bottom: 2px dashed rgba(250, 204, 21, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.25);
+            letter-spacing: 4px;
+        }
+
+        .bays-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 14px;
+        }
+
+        /* ── Individual Parking Bay ── */
+        .bay-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 2px solid var(--parking-line);
+            border-radius: 12px;
+            min-height: 160px;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bay-card:hover {
+            transform: translateY(-3px);
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.6);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+        }
+
+        .bay-card.is-ev {
+            border-color: rgba(6, 182, 212, 0.5);
+            background: rgba(6, 182, 212, 0.04);
+        }
+
+        .bay-card.is-disabled {
+            border-color: rgba(139, 92, 246, 0.5);
+            background: rgba(139, 92, 246, 0.04);
+        }
+
+        .sensor-bulb {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--accent-emerald);
+            box-shadow: 0 0 12px var(--accent-emerald);
+            transition: all 0.3s;
+        }
+
+        .bay-card.occupied .sensor-bulb {
+            background: var(--accent-rose);
+            box-shadow: 0 0 12px var(--accent-rose);
+        }
+
+        .bay-header {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 11px;
+            font-weight: 700;
+            color: #94a3b8;
+        }
+
+        /* Top-Down Visual Car */
+        .car-graphic {
+            width: 60px;
+            height: 100px;
+            border-radius: 18px 18px 14px 14px;
+            position: relative;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 0;
+            animation: carParkAnim 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes carParkAnim {
+            0% { transform: scale(0.6) translateY(-20px); opacity: 0; }
+            100% { transform: scale(1) translateY(0); opacity: 1; }
+        }
+
+        /* Windshield / Roof / Plate */
+        .car-windshield {
+            width: 44px;
+            height: 18px;
+            background: rgba(15, 23, 42, 0.85);
+            border-radius: 8px 8px 4px 4px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .car-roof {
+            width: 38px;
+            height: 24px;
+            background: rgba(0, 0, 0, 0.25);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+        }
+
+        .car-rear-window {
+            width: 40px;
+            height: 12px;
+            background: rgba(15, 23, 42, 0.85);
+            border-radius: 3px 3px 6px 6px;
+        }
+
+        .car-plate-tag {
+            background: #ffffff;
+            color: #000000;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9px;
+            font-weight: 800;
+            padding: 1px 4px;
+            border-radius: 3px;
+            border: 1px solid #94a3b8;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+        }
+
+        .vacant-bay-notice {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            color: var(--text-muted);
+            font-size: 11px;
+            margin: auto;
+        }
+
+        .vacant-icon {
+            font-size: 24px;
+            opacity: 0.4;
+        }
+
+        /* ── Exit Kiosk Terminal ── */
+        .kiosk-screen {
+            background: #080d19;
+            border: 2px solid #202b48;
+            border-radius: 12px;
+            padding: 14px;
+            margin-bottom: 12px;
+        }
+
+        .kiosk-title {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--accent-emerald);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 8px;
+        }
+
+        .kiosk-pin-display {
+            background: #000000;
+            border: 1px solid #334155;
+            border-radius: 8px;
+            padding: 8px 12px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 16px;
+            text-align: center;
+            color: #facc15;
+            letter-spacing: 6px;
+            margin-bottom: 10px;
+            min-height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .pin-keypad {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 6px;
+            margin-bottom: 12px;
+        }
+
+        .pin-key {
+            background: #1e293b;
+            border: 1px solid #334155;
+            color: #ffffff;
+            border-radius: 6px;
+            padding: 8px 0;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .pin-key:hover {
+            background: #334155;
+            border-color: #64748b;
+        }
+
+        .pin-key:active {
+            transform: scale(0.95);
+        }
+
+        .quick-pin-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .btn-quick-pin {
+            border: none;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 11px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .btn-legit-pin {
+            background: rgba(16, 185, 129, 0.15);
+            border: 1px solid rgba(16, 185, 129, 0.4);
+            color: #34d399;
+        }
+        .btn-legit-pin:hover { background: rgba(16, 185, 129, 0.3); }
+
+        .btn-thief-pin {
+            background: rgba(244, 63, 94, 0.15);
+            border: 1px solid rgba(244, 63, 94, 0.4);
+            color: #fb7185;
+        }
+        .btn-thief-pin:hover { background: rgba(244, 63, 94, 0.3); }
+
+        /* ── Action Control Panel (Big Friendly Buttons) ── */
+        .action-panel {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: var(--shadow-subtle);
+        }
+
+        .action-panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 18px;
+        }
+
+        .action-panel-header h3 {
+            font-size: 16px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .action-buttons-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 12px;
+        }
+
+        .action-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 16px 12px;
+            color: var(--text-main);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            text-align: center;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-4px);
+            border-color: var(--btn-glow, var(--accent-blue));
+            box-shadow: 0 8px 24px rgba(59, 130, 246, 0.2);
+            background: var(--bg-card-hover);
+        }
+
+        .action-btn:active {
+            transform: translateY(0);
+        }
+
+        .action-icon {
+            font-size: 26px;
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .action-btn span {
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .action-btn small {
+            font-size: 11px;
+            color: var(--text-muted);
+            line-height: 1.2;
+        }
+
+        /* ── Real-World Explainer (Plain English) ── */
+        .explainer-banner {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.7), rgba(15, 23, 42, 0.9));
+            border: 1px solid #334155;
+            border-radius: var(--radius-xl);
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: var(--shadow-subtle);
+        }
+
+        .banner-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .banner-header h3 {
+            font-size: 17px;
+            font-weight: 800;
+            color: #ffffff;
+        }
+
+        .story-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+
+        .story-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            border-radius: 14px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .story-card-top {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--accent-cyan);
+        }
+
+        .story-card p {
+            font-size: 12px;
+            line-height: 1.5;
+            color: #cbd5e1;
+        }
+
+        /* ── Live Narrative Story Feed ── */
+        .feed-container {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
+            padding: 20px;
+        }
+
+        .feed-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 14px;
+        }
+
+        .feed-header h3 {
+            font-size: 15px;
+            font-weight: 700;
+        }
+
+        .feed-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-height: 240px;
+            overflow-y: auto;
+            padding-right: 6px;
+        }
+
+        .feed-item {
+            background: rgba(255, 255, 255, 0.02);
+            border-left: 3px solid var(--accent-blue);
+            border-radius: 0 8px 8px 0;
+            padding: 10px 14px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(-10px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .feed-icon { font-size: 20px; }
+        .feed-content { flex: 1; }
+        .feed-top-line {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 2px;
+        }
+        .feed-title { font-size: 13px; font-weight: 700; color: #ffffff; }
+        .feed-time { font-size: 11px; font-family: 'JetBrains Mono', monospace; color: var(--text-muted); }
+        .feed-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.4; }
+
+        /* ── Modal Dialog for Real-World Action Explanations ── */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(8px);
+            z-index: 200;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.25s ease;
+        }
+
+        .modal-overlay.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-box {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
+            padding: 28px;
+            width: 580px;
+            max-width: 90vw;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+            transform: scale(0.95);
+            transition: transform 0.25s ease;
+        }
+
+        .modal-overlay.open .modal-box {
+            transform: scale(1);
+        }
+
+        .modal-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+
+        .modal-title-wrap {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .modal-icon {
+            font-size: 28px;
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: rgba(59, 130, 246, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-close {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .modal-close:hover { color: #ffffff; }
+
+        .modal-msg {
+            font-size: 16px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 12px;
+        }
+
+        .modal-real-explain {
+            background: rgba(59, 130, 246, 0.08);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 12px;
+            padding: 14px;
+            font-size: 13px;
+            line-height: 1.6;
+            color: #e2e8f0;
+            margin-bottom: 18px;
+        }
+
+        .modal-details {
+            background: #090e1a;
+            border-radius: 8px;
+            padding: 12px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: #94a3b8;
+            margin-bottom: 20px;
+        }
+
+        .btn-modal-ok {
+            background: var(--accent-blue);
+            color: #ffffff;
+            border: none;
+            border-radius: 10px;
+            padding: 10px 24px;
+            font-family: inherit;
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            float: right;
+        }
+
+        /* ── Technical Under-The-Hood Tab ── */
+        .tech-zone {
+            display: none;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .tech-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .tech-card h4 {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--accent-cyan);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .tech-card p {
+            font-size: 12px;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+
+        .tech-run-btn {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            cursor: pointer;
+            align-self: flex-start;
+            transition: all 0.2s;
+        }
+
+        .tech-run-btn:hover {
+            background: var(--accent-blue);
+            color: #ffffff;
+        }
+
+        .tech-output {
+            background: #060911;
+            border-radius: 6px;
+            padding: 8px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            color: #a5b4fc;
+            max-height: 80px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+
+        @media (max-width: 1024px) {
+            .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+            .lot-canvas { grid-template-columns: 1fr; }
+            .story-cards-grid { grid-template-columns: repeat(2, 1fr); }
+            .action-buttons-grid { grid-template-columns: repeat(3, 1fr); }
+            .tech-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ── Top Nav ── -->
+    <header class="navbar">
+        <div class="brand">
+            <div class="brand-icon">🅿️</div>
+            <div class="brand-text">
+                <h1>SmartPark Edge Simulator</h1>
+                <p>Real-world interactive demonstration of privacy & safety</p>
+            </div>
+        </div>
+
+        <nav class="nav-tabs">
+            <button class="tab-btn active" id="tab-realworld" onclick="switchView('realworld')">
+                🚗 Real-World Parking Lot
+            </button>
+            <button class="tab-btn" id="tab-story" onclick="startGuidedTour()">
+                🎬 Play Guided Story
+            </button>
+            <button class="tab-btn" id="tab-tech" onclick="switchView('tech')">
+                🔬 Crypto Under-The-Hood (11 Steps)
+            </button>
+        </nav>
+
+        <div class="nav-actions">
+            <button class="sound-btn" id="sound-btn" onclick="toggleSound()">
+                <span id="sound-icon">🔊</span> Sound On
+            </button>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <!-- ── Top KPIs ── -->
+        <section class="kpi-grid">
+            <div class="kpi-card" style="--kpi-accent: var(--accent-emerald)">
+                <div class="kpi-info">
+                    <h4>Available Spots</h4>
+                    <div class="kpi-value"><span id="val-free">5</span> <span class="kpi-sub">/ 8 Free</span></div>
+                </div>
+                <div class="kpi-icon-wrap" style="color: var(--accent-emerald)">🟢</div>
+            </div>
+
+            <div class="kpi-card" style="--kpi-accent: var(--accent-cyan)">
+                <div class="kpi-info">
+                    <h4>EV Charging Bays</h4>
+                    <div class="kpi-value"><span id="val-free-ev">1</span> <span class="kpi-sub">/ 2 Free</span></div>
+                </div>
+                <div class="kpi-icon-wrap" style="color: var(--accent-cyan)">⚡</div>
+            </div>
+
+            <div class="kpi-card" style="--kpi-accent: var(--accent-blue)">
+                <div class="kpi-info">
+                    <h4>Edge Shield Protection</h4>
+                    <div class="kpi-value" style="font-size: 20px;">100% Active</div>
+                </div>
+                <div class="kpi-icon-wrap" style="color: var(--accent-blue)">🛡️</div>
+            </div>
+
+            <div class="kpi-card" style="--kpi-accent: var(--accent-purple)">
+                <div class="kpi-info">
+                    <h4>Privacy Mode</h4>
+                    <div class="kpi-value" style="font-size: 20px;">Plate Anonymized</div>
+                </div>
+                <div class="kpi-icon-wrap" style="color: var(--accent-purple)">🔒</div>
+            </div>
+        </section>
+
+        <!-- ══════════════════════════════════════════════════════════════
+             REAL-WORLD INTERACTIVE LOT VIEW
+        ══════════════════════════════════════════════════════════════ -->
+        <div id="view-realworld" class="realworld-zone">
+
+            <!-- ── Visual Parking Lot Canvas ── -->
+            <div class="lot-wrapper">
+                <div class="lot-header">
+                    <div class="lot-title">
+                        <h2>🏢 Main Parking Facility (Lot-3 Live Visuals)</h2>
+                        <span class="badge-live">LIVE SYSTEM</span>
+                    </div>
+                    <div style="font-size: 12px; color: var(--text-secondary);">
+                        💡 Tip: Click any parking spot to park or vacate a car manually!
+                    </div>
+                </div>
+
+                <div class="lot-canvas">
+                    <!-- ── ENTRANCE GATE & CAMERA ── -->
+                    <div class="gate-tower">
+                        <div>
+                            <div class="gate-header">
+                                <span class="gate-tag entry-tag">ENTRY GATE #1</span>
+                                <span style="font-size: 11px; color: #94a3b8;">Automatic Barrier</span>
+                            </div>
+
+                            <div class="gate-road">
+                                <div class="barrier-post"></div>
+                                <div class="barrier-arm" id="entry-barrier"></div>
+                                <div class="camera-post">
+                                    <div class="cam-flash" id="cam-flash-entry"></div>
+                                    <span>CAM-01 (Plate Scanner)</span>
+                                </div>
+                            </div>
+
+                            <div class="gate-lcd">
+                                <div class="gate-lcd-row">
+                                    <span class="lcd-label">Scanned Plate:</span>
+                                    <span class="lcd-val" id="entry-raw-plate">DL03EF9012</span>
+                                </div>
+                                <div class="gate-lcd-row">
+                                    <span class="lcd-label">Privacy Blur:</span>
+                                    <span class="lcd-blur" id="entry-blurred-plate">DL03**9012</span>
+                                </div>
+                                <div class="gate-lcd-row">
+                                    <span class="lcd-label">Signature:</span>
+                                    <span class="lcd-val" style="color: var(--accent-emerald);">ECC Verified ✓</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="btn-quick-pin btn-legit-pin" style="margin-top: 10px;" onclick="triggerArrive(false)">
+                            <span>🚗 Drive In Standard Car</span>
+                            <span>➔</span>
+                        </button>
+                    </div>
+
+                    <!-- ── 8 PARKING BAYS (CENTER) ── -->
+                    <div class="parking-grid-center">
+                        <!-- Top Row: Bays 1 to 4 -->
+                        <div class="bays-row" id="bays-row-top">
+                            <!-- Populated dynamically via JS -->
+                        </div>
+
+                        <!-- Driving Lane -->
+                        <div class="driveway-line">
+                            ◄◄◄ ONE WAY DRIVING LANE — SPEED LIMIT 10 MPH ◄◄◄
+                        </div>
+
+                        <!-- Bottom Row: Bays 5 to 8 -->
+                        <div class="bays-row" id="bays-row-bottom">
+                            <!-- Populated dynamically via JS -->
+                        </div>
+                    </div>
+
+                    <!-- ── EXIT GATE & PAYMENT TERMINAL ── -->
+                    <div class="gate-tower">
+                        <div>
+                            <div class="gate-header">
+                                <span class="gate-tag exit-tag">EXIT GATE & KIOSK</span>
+                                <span style="font-size: 11px; color: #94a3b8;">Payment Terminal</span>
+                            </div>
+
+                            <div class="gate-road">
+                                <div class="barrier-post"></div>
+                                <div class="barrier-arm" id="exit-barrier"></div>
+                            </div>
+
+                            <div class="kiosk-screen">
+                                <div class="kiosk-title">
+                                    <span>💳</span> <span>Interactive Kiosk</span>
+                                </div>
+                                <div class="kiosk-pin-display" id="kiosk-pin-display">_ _ _ _</div>
+                                
+                                <div class="pin-keypad">
+                                    <button class="pin-key" onclick="pressPin('1')">1</button>
+                                    <button class="pin-key" onclick="pressPin('2')">2</button>
+                                    <button class="pin-key" onclick="pressPin('3')">3</button>
+                                    <button class="pin-key" onclick="pressPin('4')">4</button>
+                                    <button class="pin-key" onclick="pressPin('5')">5</button>
+                                    <button class="pin-key" onclick="pressPin('6')">6</button>
+                                    <button class="pin-key" onclick="pressPin('7')">7</button>
+                                    <button class="pin-key" onclick="pressPin('8')">8</button>
+                                    <button class="pin-key" onclick="pressPin('9')">9</button>
+                                    <button class="pin-key" onclick="clearPin()">C</button>
+                                    <button class="pin-key" onclick="pressPin('0')">0</button>
+                                    <button class="pin-key" style="background: var(--accent-emerald); color: #000;" onclick="submitCustomPin()">Pay</button>
+                                </div>
+
+                                <div class="quick-pin-actions">
+                                    <button class="btn-quick-pin btn-legit-pin" onclick="testPin('4829')">
+                                        <span>🔑 Test Valid Driver PIN (4829)</span>
+                                    </button>
+                                    <button class="btn-quick-pin btn-thief-pin" onclick="testPin('1234')">
+                                        <span>🍯 Test Thief PIN (Decoy Trap!)</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="btn-quick-pin btn-legit-pin" style="margin-top: 6px;" onclick="triggerDepart()">
+                            <span>🚙 Car Leaves Bay</span>
+                            <span>➔</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── REAL-WORLD 1-CLICK ACTIONS ── -->
+            <div class="action-panel">
+                <div class="action-panel-header">
+                    <h3>⚡ Real-World Parking Operations (Try These)</h3>
+                    <span style="font-size: 12px; color: var(--text-secondary);">Click any action to see how the system handles real-world events</span>
+                </div>
+
+                <div class="action-buttons-grid">
+                    <button class="action-btn" onclick="triggerArrive(false)" style="--btn-glow: var(--accent-blue)">
+                        <div class="action-icon" style="color: var(--accent-blue)">🚗</div>
+                        <span>1. Regular Car Enters</span>
+                        <small>Camera snaps plate, blurs it & assigns spot</small>
+                    </button>
+
+                    <button class="action-btn" onclick="triggerArrive(true)" style="--btn-glow: var(--accent-cyan)">
+                        <div class="action-icon" style="color: var(--accent-cyan)">⚡</div>
+                        <span>2. Electric Car Charges</span>
+                        <small>Directs EV to Bay E1 & computes power</small>
+                    </button>
+
+                    <button class="action-btn" onclick="triggerDepart()" style="--btn-glow: var(--accent-emerald)">
+                        <div class="action-icon" style="color: var(--accent-emerald)">🚙</div>
+                        <span>3. Car Leaves Lot</span>
+                        <small>Sensor turns green & free spot count rises</small>
+                    </button>
+
+                    <button class="action-btn" onclick="testPin('1234')" style="--btn-glow: var(--accent-amber)">
+                        <div class="action-icon" style="color: var(--accent-amber)">🍯</div>
+                        <span>4. Thief Tries Bad PIN</span>
+                        <small>Honey Decoy generates a realistic fake card</small>
+                    </button>
+
+                    <button class="action-btn" onclick="triggerInspectorAudit()" style="--btn-glow: var(--accent-purple)">
+                        <div class="action-icon" style="color: var(--accent-purple)">👮</div>
+                        <span>5. City Inspector Audit</span>
+                        <small>Issues temporary pass without master keys</small>
+                    </button>
+
+                    <button class="action-btn" onclick="triggerCameraAttack()" style="--btn-glow: var(--accent-rose)">
+                        <div class="action-icon" style="color: var(--accent-rose)">🚨</div>
+                        <span>6. Cyber Attack Defense</span>
+                        <small>Camera flood is quarantined in 0.05 seconds</small>
+                    </button>
+                </div>
+            </div>
+
+            <!-- ── PLAIN ENGLISH EXPLAINER CARDS ── -->
+            <div class="explainer-banner">
+                <div class="banner-header">
+                    <span style="font-size: 24px;">💡</span>
+                    <h3>What It Is & How It Works in Real Life</h3>
+                </div>
+
+                <div class="story-cards-grid">
+                    <div class="story-card">
+                        <div class="story-card-top">
+                            <span>🛡️</span> <span>1. Driver Privacy Shield</span>
+                        </div>
+                        <p>In standard lots, raw license plates are stored where rogue employees or hackers could track your daily routines. Our edge box <strong>blurs and hashes plates immediately</strong> upon entry.</p>
+                    </div>
+
+                    <div class="story-card">
+                        <div class="story-card-top">
+                            <span>🔒</span> <span>2. Tamper-Proof Sensors</span>
+                        </div>
+                        <p>Outdoor ultrasonic sensors sign every reading with <strong>ECC Digital Signatures</strong>. If an attacker tries to inject fake "empty" parking spots to cause traffic jams, the edge box discards the packet.</p>
+                    </div>
+
+                    <div class="story-card">
+                        <div class="story-card-top">
+                            <span>🍯</span> <span>3. The Thief Decoy Trap</span>
+                        </div>
+                        <p>When an intruder attempts to brute-force a payment terminal, normal kiosks say "Access Denied". Our edge box uses <strong>Honey Encryption</strong> to feed the attacker realistic fake credit cards, catching them without alerting them!</p>
+                    </div>
+
+                    <div class="story-card">
+                        <div class="story-card-top">
+                            <span>📊</span> <span>4. Smart Math with No Peeking</span>
+                        </div>
+                        <p>The city grid needs to calculate total EV charging load and total free spots across city boxes. Using <strong>Homomorphic Encryption</strong>, the boxes add numbers together while remaining completely encrypted!</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── LIVE STORY FEED ── -->
+            <div class="feed-container">
+                <div class="feed-header">
+                    <h3>📋 Real-Time Activity Feed (Human Friendly)</h3>
+                    <button class="tech-run-btn" onclick="resetLot()">🔄 Reset Parking Lot</button>
+                </div>
+                <div class="feed-list" id="feed-list">
+                    <!-- Populated dynamically -->
+                </div>
+            </div>
+        </div>
+
+        <!-- ══════════════════════════════════════════════════════════════
+             TECHNICAL CRYPTO VIEW (Under The Hood)
+        ══════════════════════════════════════════════════════════════ -->
+        <div id="view-tech" class="tech-zone">
+            <div style="margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                    <h2>🔬 Cryptographic Engine & Protocols (Academic Mode)</h2>
+                    <p style="color: var(--text-secondary); font-size: 13px;">View and execute each of the 11 cryptographic mechanisms individually.</p>
+                </div>
+                <button class="tab-btn active" onclick="runAllCrypto()">⚡ Run All 11 Cryptographic Steps</button>
+            </div>
+
+            <div class="tech-grid" id="tech-grid">
+                <!-- 11 Steps Cards -->
+                <div class="tech-card">
+                    <h4><span>1. Ingest (AES-GCM + ECC)</span> <button class="tech-run-btn" onclick="runStep(1)">Run</button></h4>
+                    <p>Cameras and sensors encrypt payloads with AES-256-GCM and sign with ECDSA P-256 for integrity.</p>
+                    <div class="tech-output" id="output-step-1">Ready to execute...</div>
+                </div>
+
+                <div class="tech-card">
+                    <h4><span>2. Identity-Based (IBE)</span> <button class="tech-run-btn" onclick="runStep(2)">Run</button></h4>
+                    <p>Camera encrypts directly to lot identity ("LOT-3"). No complex PKI certificate exchange required.</p>
+                    <div class="tech-output" id="output-step-2">Ready to execute...</div>
+                </div>
+
+                <div class="tech-card">
+                    <h4><span>3. Attribute-Based (ABE)</span> <button class="tech-run-btn" onclick="runStep(3)">Run</button></h4>
+                    <p>Access policy: 'ParkingAttendant AND Lot3'. Unauthorised guards are cryptographically denied access.</p>
+                    <div class="tech-output" id="output-step-3">Ready to execute...</div>
+                </div>
+
+                <div class="tech-card">
+                    <h4><span>4. Proxy Re-Encryption (PRE)</span> <button class="tech-run-btn" onclick="runStep(4)">Run</button></h4>
+                    <p>Operator generates re-encryption key so City Inspector can audit occupancy data without sharing master keys.</p>
+                    <div class="tech-output" id="output-step-4">Ready to execute...</div>
+                </div>
+
+                <div class="tech-card">
+                    <h4><span>5. Functional Encryption (FE)</span> <button class="tech-run-btn" onclick="runStep(5)">Run</button></h4>
+                    <p>Computes inner product (occupancy percentage and free EV stall count) without decrypting per-bay records.</p>
+                    <div class="tech-output" id="output-step-5">Ready to execute...</div>
+                </div>
+
+                <div class="tech-card">
+                    <h4><span>6. Honey Encryption</span> <button class="tech-run-btn" onclick="runStep(6)">Run</button></h4>
+                    <p>Protects payment terminal PINs. Entering an incorrect PIN produces plausible synthetic credit card numbers.</p>
+                    <div class="tech-output" id="output-step-6">Ready to execute...</div>
+                </div>
+
+                <div class="tech-card">
+                    <h4><span>7. Searchable Encryption (SSE)</span> <button class="tech-run-btn" onclick="runStep(7)">Run</button></h4>
+                    <p>Operators submit cryptographic trapdoors to search encrypted index of parking events without plaintext leak.</p>
+                    <div class="tech-output" id="output-step-7">Ready to execute...</div>
+                </div>
+
+                <div class="tech-card">
+                    <h4><span>8. Homomorphic Encryption</span> <button class="tech-run-btn" onclick="runStep(8)">Run</button></h4>
+                    <p>Paillier cryptosystem sums free spots across multiple edge boxes while data remains completely encrypted.</p>
+                    <div class="tech-output" id="output-step-8">Ready to execute...</div>
+                </div>
+
+                <div class="tech-card">
+                    <h4><span>9. JWT Access Tokens</span> <button class="tech-run-btn" onclick="runStep(9)">Run</button></h4>
+                    <p>Operator single-domain authentication, city-payment JWT, and digital ticket handover for mobile apps.</p>
+                    <div class="tech-output" id="output-step-9">Ready to execute...</div>
+                </div>
+
+                <div class="tech-card">
+                    <h4><span>10. Privacy Protections</span> <button class="tech-run-btn" onclick="runStep(10)">Run</button></h4>
+                    <p>SHA-256 license plate hashing, visual plate blurring, coordinate truncation, and rotating temporary IDs.</p>
+                    <div class="tech-output" id="output-step-10">Ready to execute...</div>
+                </div>
+
+                <div class="tech-card">
+                    <h4><span>11. Token-Bucket Rate Limiter</span> <button class="tech-run-btn" onclick="runStep(11)">Run</button></h4>
+                    <p>Token-bucket algorithm detects flooding camera streams and quarantines rogue hardware automatically.</p>
+                    <div class="tech-output" id="output-step-11">Ready to execute...</div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- ── POPUP MODAL FOR REAL-WORLD EXPLANATIONS ── -->
+    <div class="modal-overlay" id="info-modal" onclick="closeModalOnOverlay(event)">
+        <div class="modal-box">
+            <div class="modal-top">
+                <div class="modal-title-wrap">
+                    <div class="modal-icon" id="modal-icon">🚗</div>
+                    <div>
+                        <h3 id="modal-headline" style="font-size: 18px; font-weight: 800;">Real-World Event</h3>
+                        <p style="font-size: 12px; color: var(--text-secondary);" id="modal-sub">Smart Parking Edge Box</p>
+                    </div>
+                </div>
+                <button class="modal-close" onclick="closeModal()">✕</button>
+            </div>
+
+            <div class="modal-msg" id="modal-msg">
+                Event Description
+            </div>
+
+            <div class="modal-real-explain" id="modal-real-explain">
+                Explanation in plain English...
+            </div>
+
+            <div class="modal-details" id="modal-details">
+                Technical edge box response details...
+            </div>
+
+            <div>
+                <button class="btn-modal-ok" onclick="closeModal()">Got it, continue!</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── JAVASCRIPT LOGIC ── -->
+    <script>
+        // Audio synthesis for rich real-world feedback (Zero external files needed)
+        let soundEnabled = true;
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+        function playSound(type) {
+            if (!soundEnabled || !audioCtx) return;
+            try {
+                if (audioCtx.state === 'suspended') audioCtx.resume();
+                const now = audioCtx.currentTime;
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                if (type === 'gate') {
+                    // Friendly double-chime for gate lift
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(523.25, now); // C5
+                    osc.frequency.setValueAtTime(659.25, now + 0.1); // E5
+                    gain.gain.setValueAtTime(0.15, now);
+                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.35);
+                    osc.start(now);
+                    osc.stop(now + 0.35);
+                } else if (type === 'flash') {
+                    // Shutter click
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(1200, now);
+                    gain.gain.setValueAtTime(0.2, now);
+                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.08);
+                    osc.start(now);
+                    osc.stop(now + 0.08);
+                } else if (type === 'decoy') {
+                    // Decoy buzz
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(150, now);
+                    osc.frequency.setValueAtTime(110, now + 0.15);
+                    gain.gain.setValueAtTime(0.2, now);
+                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.4);
+                    osc.start(now);
+                    osc.stop(now + 0.4);
+                } else if (type === 'success') {
+                    // Success chord
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(440, now);
+                    osc.frequency.setValueAtTime(554.37, now + 0.08);
+                    osc.frequency.setValueAtTime(659.25, now + 0.16);
+                    gain.gain.setValueAtTime(0.2, now);
+                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.5);
+                    osc.start(now);
+                    osc.stop(now + 0.5);
+                }
+            } catch (e) {
+                console.log("Audio not allowed yet:", e);
+            }
+        }
+
+        function toggleSound() {
+            soundEnabled = !soundEnabled;
+            const btn = document.getElementById('sound-btn');
+            const icon = document.getElementById('sound-icon');
+            if (soundEnabled) {
+                btn.innerHTML = '<span>🔊</span> Sound On';
+                playSound('success');
+            } else {
+                btn.innerHTML = '<span>🔇</span> Sound Off';
+            }
+        }
+
+        // View switching
+        function switchView(viewName) {
+            document.getElementById('tab-realworld').classList.toggle('active', viewName === 'realworld');
+            document.getElementById('tab-tech').classList.toggle('active', viewName === 'tech');
+            document.getElementById('view-realworld').style.display = (viewName === 'realworld') ? 'block' : 'none';
+            document.getElementById('view-tech').style.display = (viewName === 'tech') ? 'block' : 'none';
+        }
+
+        // Pin input
+        let currentPin = "";
+        function pressPin(digit) {
+            if (currentPin.length < 4) {
+                currentPin += digit;
+                updatePinDisplay();
+            }
+        }
+        function clearPin() {
+            currentPin = "";
+            updatePinDisplay();
+        }
+        function updatePinDisplay() {
+            const el = document.getElementById('kiosk-pin-display');
+            if (!currentPin) {
+                el.innerText = "_ _ _ _";
+            } else {
+                el.innerText = currentPin.padEnd(4, '_').split('').join(' ');
+            }
+        }
+
+        function submitCustomPin() {
+            if (currentPin.length < 4) {
+                alert("Please enter a 4-digit PIN!");
+                return;
+            }
+            testPin(currentPin);
+            clearPin();
+        }
+
+        // Real-world state polling & rendering
+        let currentLotState = null;
+
+        async function fetchLotState() {
+            try {
+                const res = await fetch('/api/realworld/state');
+                const data = await res.json();
+                currentLotState = data;
+                renderParkingLot(data);
+            } catch (e) {
+                console.error("Failed to load real-world parking state:", e);
+            }
+        }
+
+        function renderParkingLot(data) {
+            // Update KPIs
+            document.getElementById('val-free').innerText = data.free;
+            document.getElementById('val-free-ev').innerText = data.free_ev;
+
+            // Update Entry Gate Display
+            if (data.entry_gate) {
+                document.getElementById('entry-raw-plate').innerText = data.entry_gate.last_vehicle || "KA01AB1234";
+                document.getElementById('entry-blurred-plate').innerText = data.entry_gate.blurred || "KA01**1234";
+                const arm = document.getElementById('entry-barrier');
+                if (data.entry_gate.barrier === 'up') {
+                    arm.classList.add('raised');
+                } else {
+                    arm.classList.remove('raised');
+                }
+            }
+
+            // Update Exit Gate
+            if (data.exit_gate) {
+                const exitArm = document.getElementById('exit-barrier');
+                if (data.exit_gate.barrier === 'up') {
+                    exitArm.classList.add('raised');
+                } else {
+                    exitArm.classList.remove('raised');
+                }
+            }
+
+            // Render Bays (Top row: 1 to 4; Bottom row: 5 to 8)
+            const rowTop = document.getElementById('bays-row-top');
+            const rowBottom = document.getElementById('bays-row-bottom');
+            rowTop.innerHTML = '';
+            rowBottom.innerHTML = '';
+
+            data.spots.forEach(spot => {
+                const card = document.createElement('div');
+                card.className = `bay-card ${spot.occupied ? 'occupied' : 'vacant'} ${spot.type === 'ev' ? 'is-ev' : ''} ${spot.type === 'disabled' ? 'is-disabled' : ''}`;
+                card.onclick = () => toggleBayManual(spot.id);
+
+                let badgeType = '';
+                if (spot.type === 'ev') badgeType = '<span style="color:var(--accent-cyan); font-size:10px;">⚡ EV</span>';
+                if (spot.type === 'disabled') badgeType = '<span style="color:var(--accent-purple); font-size:10px;">♿ VIP</span>';
+
+                let centerContent = '';
+                if (spot.occupied && spot.car) {
+                    centerContent = `
+                        <div class="car-graphic" style="background: ${spot.car.color};">
+                            <div class="car-windshield"></div>
+                            <div class="car-roof">${spot.type === 'ev' ? '⚡' : '🚘'}</div>
+                            <div class="car-rear-window"></div>
+                            <div class="car-plate-tag">${spot.car.blurred_plate || spot.car.plate}</div>
+                        </div>
+                    `;
+                } else {
+                    centerContent = `
+                        <div class="vacant-bay-notice">
+                            <span class="vacant-icon">${spot.type === 'ev' ? '⚡' : '🅿️'}</span>
+                            <span>FREE</span>
+                        </div>
+                    `;
+                }
+
+                card.innerHTML = `
+                    <div class="bay-header">
+                        <span>${spot.name}</span>
+                        ${badgeType}
+                        <div class="sensor-bulb"></div>
+                    </div>
+                    ${centerContent}
+                    <div style="font-size: 10px; color: ${spot.occupied ? '#f87171' : '#34d399'}; font-weight: 700;">
+                        ${spot.occupied ? 'OCCUPIED' : 'VACANT'}
+                    </div>
+                `;
+
+                if (spot.id <= 4) {
+                    rowTop.appendChild(card);
+                } else {
+                    rowBottom.appendChild(card);
+                }
+            });
+
+            // Render Activity Feed
+            const feedList = document.getElementById('feed-list');
+            if (data.logs && data.logs.length) {
+                feedList.innerHTML = data.logs.map(log => `
+                    <div class="feed-item">
+                        <div class="feed-icon">${log.icon}</div>
+                        <div class="feed-content">
+                            <div class="feed-top-line">
+                                <span class="feed-title">${log.title}</span>
+                                <span class="feed-time">${log.time}</span>
+                            </div>
+                            <div class="feed-desc">${log.desc}</div>
+                        </div>
+                    </div>
+                `).join('');
+            }
+        }
+
+        // Real-World Actions Trigger
+        async function triggerArrive(isEv) {
+            playSound('flash');
+            const flash = document.getElementById('cam-flash-entry');
+            flash.classList.add('flashing');
+            setTimeout(() => flash.classList.remove('flashing'), 400);
+
+            try {
+                const res = await fetch('/api/realworld/arrive', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ is_ev: isEv })
+                });
+                const data = await res.json();
+                
+                if (data.success) {
+                    playSound('gate');
+                    // Lift entry barrier
+                    const arm = document.getElementById('entry-barrier');
+                    arm.classList.add('raised');
+                    setTimeout(() => arm.classList.remove('raised'), 2500);
+
+                    showModal('🚗 Car Arrived & Parked',
+                              data.message,
+                              data.explanation,
+                              `Plate: ${data.plate} | Blurred: ${data.blurred_plate} | Ticket: ${data.ticket_id}`);
+                } else {
+                    showModal('⚠️ Parking Lot Full', data.message, data.explanation, 'Ultrasonic sensor threshold: 0 bays free.');
+                }
+                fetchLotState();
+            } catch (e) {
+                console.error(e);
+            }
+        }
+
+        async function triggerDepart() {
+            try {
+                const res = await fetch('/api/realworld/depart', { method: 'POST' });
+                const data = await res.json();
+                if (data.success) {
+                    playSound('gate');
+                    const arm = document.getElementById('exit-barrier');
+                    arm.classList.add('raised');
+                    setTimeout(() => arm.classList.remove('raised'), 2500);
+
+                    showModal('🚙 Car Departed',
+                              data.message,
+                              data.explanation,
+                              `Spot ${data.freed_spot.name} is now available. Sensor state updated.`);
+                } else {
+                    showModal('Notice', data.message, data.explanation, '');
+                }
+                fetchLotState();
+            } catch (e) {
+                console.error(e);
+            }
+        }
+
+        async function testPin(pinVal) {
+            try {
+                const res = await fetch('/api/realworld/pay_kiosk', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ pin: pinVal })
+                });
+                const data = await res.json();
+                if (data.is_decoy) {
+                    playSound('decoy');
+                    showModal('🍯 Honey Decoy Trap Fired!',
+                              data.message,
+                              data.explanation,
+                              `Decoy Credit Card Dispatched: ${data.card_number}\nIntruder trapped with believable dummy credentials!`);
+                } else {
+                    playSound('success');
+                    const arm = document.getElementById('exit-barrier');
+                    arm.classList.add('raised');
+                    setTimeout(() => arm.classList.remove('raised'), 2500);
+
+                    showModal('✅ Payment Verified',
+                              data.message,
+                              data.explanation,
+                              `Card verified: ${data.card_number}\nExit barrier lifted.`);
+                }
+                fetchLotState();
+            } catch (e) {
+                console.error(e);
+            }
+        }
+
+        async function triggerInspectorAudit() {
+            playSound('success');
+            try {
+                const res = await fetch('/api/realworld/inspector_audit', { method: 'POST' });
+                const data = await res.json();
+                showModal('👮 City Parking Audit',
+                          data.message,
+                          data.explanation,
+                          `Inspector Badge: ${data.inspector_id} | Verified: Lot-3 capacity compliance.`);
+                fetchLotState();
+            } catch (e) {
+                console.error(e);
+            }
+        }
+
+        async function triggerCameraAttack() {
+            playSound('decoy');
+            try {
+                const res = await fetch('/api/realworld/camera_attack', { method: 'POST' });
+                const data = await res.json();
+                showModal('🚨 Flood Attack Stopped',
+                          data.message,
+                          data.explanation,
+                          `Packets Sent: 20 | Quarantined at packet #${data.quarantined_at_frame} | Rate Limiter Status: Active`);
+                fetchLotState();
+            } catch (e) {
+                console.error(e);
+            }
+        }
+
+        async function toggleBayManual(spotId) {
+            try {
+                const res = await fetch(`/api/realworld/toggle_spot/${spotId}`, { method: 'POST' });
+                const data = await res.json();
+                if (data.action === 'parked') {
+                    playSound('gate');
+                } else {
+                    playSound('success');
+                }
+                fetchLotState();
+            } catch (e) {
+                console.error(e);
+            }
+        }
+
+        async function resetLot() {
+            await fetch('/api/realworld/reset', { method: 'POST' });
+            playSound('success');
+            fetchLotState();
+        }
+
+        // Guided Real-World Tour
+        let tourRunning = false;
+        async function startGuidedTour() {
+            if (tourRunning) return;
+            tourRunning = true;
+            switchView('realworld');
+
+            const steps = [
+                { action: () => triggerArrive(false), delay: 3500 },
+                { action: () => triggerArrive(true), delay: 3500 },
+                { action: () => testPin('1234'), delay: 4000 },
+                { action: () => testPin('4829'), delay: 3500 },
+                { action: () => triggerCameraAttack(), delay: 3500 }
+            ];
+
+            for (const step of steps) {
+                await step.action();
+                await new Promise(r => setTimeout(r, step.delay));
+                closeModal();
+                await new Promise(r => setTimeout(r, 600));
+            }
+            tourRunning = false;
+        }
+
+        // Modal Handler
+        function showModal(headline, message, explanation, details) {
+            document.getElementById('modal-headline').innerText = headline;
+            document.getElementById('modal-msg').innerText = message;
+            document.getElementById('modal-real-explain').innerText = explanation;
+            document.getElementById('modal-details').innerText = details;
+            document.getElementById('info-modal').classList.add('open');
+        }
+
+        function closeModal() {
+            document.getElementById('info-modal').classList.remove('open');
+        }
+
+        function closeModalOnOverlay(e) {
+            if (e.target.id === 'info-modal') closeModal();
+        }
+
+        // Cryptographic Steps Run
+        async function runStep(stepNum) {
+            const outEl = document.getElementById(`output-step-${stepNum}`);
+            outEl.innerText = "Encrypting & computing on Edge Box...";
+            try {
+                const res = await fetch(`/api/step${stepNum}`, { method: 'POST' });
+                const data = await res.json();
+                outEl.innerText = JSON.stringify(data, null, 2);
+            } catch (e) {
+                outEl.innerText = "Error: " + e;
+            }
+        }
+
+        async function runAllCrypto() {
+            for (let i = 1; i <= 11; i++) {
+                await runStep(i);
+            }
+        }
+
+        // Initial Load & Polling
+        fetchLotState();
+        setInterval(fetchLotState, 3500);
+    </script>
+</body>
+</html>
