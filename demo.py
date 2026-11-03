@@ -16,7 +16,8 @@ Walks through every requirement:
  11. Rate-limiter: quarantine flooding cameras
 """
 
-import json, time
+import sys, json, time
+sys.stdout.reconfigure(encoding="utf-8")
 from Crypto.Random import get_random_bytes
 
 from camera import Camera
